@@ -17,6 +17,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'factory_girl_rails'
