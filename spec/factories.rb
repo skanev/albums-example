@@ -5,4 +5,10 @@ FactoryGirl.define do
     email
     password 'secret'
   end
+
+  factory :album do
+    user
+    name 'Name'
+    artist 'Artist'
+  end
 end
