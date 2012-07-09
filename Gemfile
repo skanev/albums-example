@@ -6,6 +6,7 @@ gem 'pg'
 
 gem 'simple_form'
 gem 'devise'
+gem 'slim'
 
 gem 'jquery-rails'
 
