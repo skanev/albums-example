@@ -2,6 +2,11 @@ Given 'a user "$email" with password "$password"' do |email, password|
   create :user, email: email, password: password
 end
 
+Given 'I am logged in' do
+  user = create :user
+  visit backdoor_login_path(email: user.email)
+end
+
 When 'I attempt to log in with email "$email" and password "$password"' do |email, password|
   visit new_user_session_path
 
