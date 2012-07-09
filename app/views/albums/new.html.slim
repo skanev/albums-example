@@ -1,0 +1,7 @@
+h1 Upload an album
+
+= simple_form_for @album do |form|
+  = form.input :name
+  = form.input :artist
+
+  = form.submit 'Create'
