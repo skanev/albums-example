@@ -21,4 +21,6 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+
+  Albums::Application.reload_routes!
 end
