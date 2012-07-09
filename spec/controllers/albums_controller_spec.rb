@@ -3,7 +3,17 @@ require 'spec_helper'
 describe AlbumsController do
   let(:current_user) { double 'current user' }
 
+  before do
+    controller.stub current_user: current_user
+  end
+
   describe "GET index" do
+    it "denies access to unauthenticated user" do
+      controller.stub current_user: nil
+      get :index
+      response.should deny_access
+    end
+
     it "assigns all the albums of the current user" do
       controller.stub current_user: current_user
       current_user.stub albums: 'albums'
@@ -13,6 +23,12 @@ describe AlbumsController do
   end
 
   describe "GET new" do
+    it "denies access to unauthenticated user" do
+      controller.stub current_user: nil
+      get :new
+      response.should deny_access
+    end
+
     it "assigns a new album" do
       Album.stub new: 'new-album'
       get :new
@@ -24,11 +40,17 @@ describe AlbumsController do
     let(:album) { double 'album' }
 
     before do
-      controller.stub current_user: current_user
       Album.stub new: album
       album.stub :user=
       album.stub :save
     end
+
+    it "denies access to unauthenticated user" do
+      controller.stub current_user: nil
+      post :create
+      response.should deny_access
+    end
+
 
     it "builds a new album" do
       Album.should_receive(:new).with('album-attributes')
