@@ -46,9 +46,34 @@ describe AlbumsController do
     end
 
     context "when successful" do
+      before do
+        album.stub save: true
+      end
+
       it "redirects to the albums index" do
         post :create
         controller.should redirect_to albums_path
+      end
+
+      it "sets a flash notice" do
+        post :create
+        flash[:notice].should be_present
+      end
+    end
+
+    context "when unsuccessful" do
+      before do
+        album.stub save: false
+      end
+
+      it "assings the album" do
+        post :create
+        assigns(:album).should eq album
+      end
+
+      it "rerenders the album form" do
+        post :create
+        controller.should render_template :new
       end
     end
   end
