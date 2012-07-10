@@ -3,11 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 
 gem 'pg'
-
 gem 'simple_form'
 gem 'devise'
 gem 'slim'
-
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'jquery-rails'
 
 group :assets do

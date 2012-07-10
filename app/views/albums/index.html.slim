@@ -1,3 +1,5 @@
 ul
   - @albums.each do |album|
-    li #{album.name} by #{album.artist}
+    li
+      = image_tag album.cover.small.url
+      span #{album.name} by #{album.artist}

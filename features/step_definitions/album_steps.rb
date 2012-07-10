@@ -11,6 +11,7 @@ When 'I upload an album "$name" by "$artist"' do |name, artist|
 
   fill_in 'Name', with: name
   fill_in 'Artist', with: artist
+  attach_file 'album[cover]', Rails.root.join('spec/images/cover.jpg')
 
   click_on 'Create'
 end

@@ -1,8 +1,9 @@
 class Album < ActiveRecord::Base
   belongs_to :user
 
-  validates :name, presence: true
-  validates :artist, presence: true
+  validates :name, :artist, :cover, presence: true
 
-  attr_accessible :name, :artist
+  attr_accessible :name, :artist, :cover
+
+  mount_uploader :cover, CoverUploader
 end
