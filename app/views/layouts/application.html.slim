@@ -8,7 +8,10 @@ html
 
   body
     - if user_signed_in?
-      = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'log-out'
+      .current-user
+        span Logged in as #{current_user.email}.
+        '
+        = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'log-out'
 
     - if notice.present?
       p.notice = notice
