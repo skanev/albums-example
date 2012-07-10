@@ -14,11 +14,15 @@ describe AlbumsController do
       response.should deny_access
     end
 
-    it "assigns all the albums of the current user" do
-      controller.stub current_user: current_user
-      current_user.stub albums: 'albums'
+    it "searches for albums" do
+      Album.should_receive(:search_user_albums).with(current_user, 'query')
+      get :index, query: 'query'
+    end
+
+    it "assigns the found albums" do
+      Album.stub search_user_albums: 'found albums'
       get :index
-      assigns(:albums).should eq 'albums'
+      assigns(:albums).should eq 'found albums'
     end
   end
 

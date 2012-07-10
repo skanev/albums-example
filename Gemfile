@@ -9,6 +9,7 @@ gem 'slim'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-rails'
+gem 'texticle', require: 'texticle/rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'

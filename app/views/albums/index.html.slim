@@ -1,6 +1,11 @@
 #albums
   h1 My albums
 
+  = form_tag albums_path, method: :get do
+    = label_tag :query, 'Search:'
+    = search_field_tag :query, params[:query]
+    = submit_tag 'Search'
+
   ul
     - @albums.each do |album|
       li
