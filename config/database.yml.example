@@ -5,6 +5,7 @@ development:
   pool: 5
   username: albums
   password:
+  min_messages: warning
 
 test:
   adapter: postgresql
@@ -13,6 +14,7 @@ test:
   pool: 5
   username: albums
   password:
+  min_messages: warning
 
 production:
   adapter: postgresql
@@ -21,6 +23,7 @@ production:
   pool: 5
   username: albums
   password:
+  min_messages: warning
 
 cucumber:
   <<: *test
