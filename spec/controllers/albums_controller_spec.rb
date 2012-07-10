@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AlbumsController do
-  let(:current_user) { double 'current user' }
+  let(:current_user) { double 'current user', id: '1' }
 
   before do
     controller.stub current_user: current_user
@@ -96,6 +96,82 @@ describe AlbumsController do
       it "rerenders the album form" do
         post :create
         controller.should render_template :new
+      end
+    end
+  end
+
+  describe "GET edit" do
+    let(:album) { double 'album' }
+
+    before do
+      Album.stub find_by_id_and_user_id!: album
+    end
+
+    it "denies access to unauthenticated user" do
+      controller.stub current_user: nil
+      get :edit, id: '1'
+      response.should deny_access
+    end
+
+    it "looks up the album by id and user" do
+      Album.should_receive(:find_by_id_and_user_id!).with('42', current_user.id)
+      get :edit, id: '42'
+    end
+
+    it "assings the album" do
+      get :edit, id: '1'
+      assigns(:album).should eq album
+    end
+  end
+
+  describe "PUT update" do
+    let(:album) { double 'album' }
+
+    before do
+      Album.stub find_by_id_and_user_id!: album
+      album.stub :update_attributes
+    end
+
+    it "denies access to unauthenticated user" do
+      controller.stub current_user: nil
+      get :update, id: '1'
+      response.should deny_access
+    end
+
+    it "looks up the album by id and user" do
+      Album.should_receive(:find_by_id_and_user_id!).with('42', current_user.id)
+      get :update, id: '42'
+    end
+
+    it "attempts to update the album" do
+      album.should_receive(:update_attributes).with('album-attributes')
+      get :update, id: '42', album: 'album-attributes'
+    end
+
+    context "when successful" do
+      before do
+        album.stub update_attributes: true
+      end
+
+      it "redirects to the list of albums" do
+        get :update, id: '42'
+        controller.should redirect_to albums_path
+      end
+
+      it "sets a flash notice" do
+        get :update, id: '42'
+        flash[:notice].should be_present
+      end
+    end
+
+    context "when unsuccessful" do
+      before do
+        album.stub update_attributes: false
+      end
+
+      it "rerenders the edit form" do
+        get :update, id: '42'
+        controller.should render_template :edit
       end
     end
   end

@@ -1,5 +1,5 @@
-h1 Upload an album
+h1 Edit #{@album.name}
 
 = simple_form_for @album do |form|
   = render 'form', form: form
-  = form.submit 'Create'
+  = form.submit 'Save'

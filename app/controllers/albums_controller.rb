@@ -19,4 +19,17 @@ class AlbumsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @album = Album.find_by_id_and_user_id! params[:id], current_user.id
+  end
+
+  def update
+    @album = Album.find_by_id_and_user_id! params[:id], current_user.id
+    if @album.update_attributes params[:album]
+      redirect_to albums_path, notice: 'Album updated successfully'
+    else
+      render :edit
+    end
+  end
 end

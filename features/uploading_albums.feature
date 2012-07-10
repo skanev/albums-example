@@ -9,3 +9,10 @@ Feature: Uploading albums
   Scenario: Submitting an invalid album form
     When I attempt to upload an invalid album
     Then I should see that my album is invalid
+
+  Scenario: Edit an album
+    Given I have an album "A Love Supreme" by "John Coltrane"
+    When I edit "A Love Supreme" and change:
+      | Name   | Waltz for Debby   |
+      | Artist | Monica Zetterlund |
+    Then I should have an album "Waltz for Debby" by "Monica Zetterlund"
