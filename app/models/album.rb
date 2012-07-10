@@ -3,7 +3,7 @@ class Album < ActiveRecord::Base
 
   validates :name, :artist, :cover, presence: true
 
-  attr_accessible :name, :artist, :cover
+  attr_protected :user_id, :created_at, :updated_at
 
   mount_uploader :cover, CoverUploader
 end

@@ -1,0 +1,7 @@
+$border: #ccf;
+$background: #eef;
+
+#albums {
+  ul { list-style: none; margin: 0; overflow: hidden; padding: 0; }
+  ul li { border: 1px solid $border; background-color: $background; float: left; margin: 1em; padding: 1em; width: 100px; height: 150px; }
+}

@@ -1,3 +1,6 @@
 = form.input :name
 = form.input :artist
 = form.input :cover, as: :file
+= form.hidden_field :cover_cache
+
+div = image_tag form.object.cover.large.url if form.object.cover?

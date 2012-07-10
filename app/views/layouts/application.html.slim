@@ -7,7 +7,12 @@ html
     = csrf_meta_tags
 
   body
-    p.notice = notice
-    p.alert = alert
+    - if user_signed_in?
+      = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'log-out'
+
+    - if notice.present?
+      p.notice = notice
+    - if alert.present?
+      p.alert = alert
 
     = yield

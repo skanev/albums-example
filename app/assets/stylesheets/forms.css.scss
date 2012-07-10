@@ -1,0 +1,15 @@
+.simple_form {
+  > div { margin: 1em 0; }
+  > div label { display: block; font-weight: bold; margin: .25em .1em; }
+
+  .alert-error { color: red; }
+  .field-with-errors .error { color: red; padding-left: 1em; }
+
+  .required abbr { font-weight: normal; color: #88f; }
+
+  input[type=text],
+  input[type=password],
+  input[type=email] { border: 1px solid #eee; padding: .4em; }
+
+  .boolean label { display: inline; font-weight: normal; }
+}

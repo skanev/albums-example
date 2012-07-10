@@ -1,0 +1,12 @@
+body { font-family: 'Verdana', sans-serif; }
+
+a,
+a:visited { color: #00f; }
+
+a:hover { color: #55f; }
+
+p.notice { background: #efe; border: 1px solid #cfc; padding: 1em; margin: .5em 0 1em 0; }
+p.alert { background: #fee; border: 1px solid #fcc; padding: 1em; margin: .5em 0 1em 0; }
+
+.current-user { position: absolute; top: 1em; right: 1em; }
+.current-user span { font-style: italic; }

@@ -1,5 +1,11 @@
-ul
-  - @albums.each do |album|
-    li
-      = image_tag album.cover.small.url
-      span #{album.name} by #{album.artist}
+#albums
+  h1 My albums
+
+  ul
+    - @albums.each do |album|
+      li
+        = link_to edit_album_path(album) do
+          = image_tag album.cover.small.url
+          span #{album.name} by #{album.artist}
+
+  = link_to 'Add album', new_album_path
